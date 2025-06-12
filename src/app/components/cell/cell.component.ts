@@ -30,7 +30,7 @@ export class CellComponent {
 
   onRightClick(event: MouseEvent): void {
     event.preventDefault();
-    if (!this.isRevealed) this.toggleFlag.emit();
+    if (!this.isRevealed()) this.toggleFlag.emit();
   }
 
   onKeyPress(event: Event): void {
