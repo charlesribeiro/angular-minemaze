@@ -1,0 +1,16 @@
+<div
+  class="cell"
+  tabindex="0"
+  role="button"
+  [class.revealed]="isRevealed()"
+  [class.mine]="isMine() && isRevealed()"
+  [class.flagged]="isFlagged() && !isRevealed()"
+  (click)="onLeftClick($event)"
+  (contextmenu)="onRightClick($event)"
+  (keyup.enter)="onKeyPress($event)"
+  (keyup.space)="onKeyPress($event)"
+>
+  @if (isRevealed()) { @if (isMine()) { 💣 } @else if (adjacentMines() > 0) {
+  {{ adjacentMines() }}
+  } } @else if (isFlagged()) { 🚩 }
+</div>
