@@ -1,3 +1,10 @@
 :host {
-  display: block;
+
+  .board {
+    display: flex;
+
+    .cell.active {
+      outline: 2px solid blue;
+    }
+  }
 }

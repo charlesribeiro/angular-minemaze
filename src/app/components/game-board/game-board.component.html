@@ -1,2 +1,16 @@
-<p>game-board works!</p>
-<app-cell [isMine]="true" [isRevealed]="true"></app-cell>
+<div
+  class="board"
+  [style.gridTemplateColumns]="'repeat(' + boardSize + ', 1fr)'"
+>
+  @for (cell of board(); track cell.id) {
+  <app-cell
+    [row]="cell.row"
+    [col]="cell.col"
+    [isRevealed]="cell.isRevealed"
+    [isMine]="cell.isMine"
+    [isFlagged]="cell.isFlagged"
+    (click)="onCellClick(cell.row, cell.col)"
+    [class.active]="isActiveCell(cell.row, cell.col)"
+  />
+  }
+</div>
