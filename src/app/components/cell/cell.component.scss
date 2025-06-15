@@ -1,9 +1,42 @@
-:host {
+.cell {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #999;
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
-    height: 20px;
-    width: 20px;
-    border: 1px solid black;
+    align-items: center;
+    font-weight: bold;
+    user-select: none;
+    cursor: pointer;
+    background-color: #ddd;
+    transition: background-color 0.1s, box-shadow 0.1s;
+
+    &:focus-visible {
+        outline: 2px solid #007acc;
+        box-shadow: 0 0 4px #007acc;
+    }
+
+    &.revealed {
+        background-color: #e6e6e6;
+        border: 1px solid #ccc;
+        cursor: default;
+    }
+
+    &.mine.revealed {
+        background-color: #ff6b6b;
+        color: #900;
+    }
+
+    &.flagged {
+        background-color: #f0e68c; // Khaki color for flags
+        color: #b22222;
+    }
+
+    &.revealed {
+        color: #333;
+
+        &::after {
+            content: '';
+        }
+    }
 }

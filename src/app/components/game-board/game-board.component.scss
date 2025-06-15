@@ -1,10 +1,9 @@
-:host {
+.board-grid {
+  display: grid;
+  gap: 2px; // Adjust spacing between cells
+}
 
-  .board {
-    display: flex;
-
-    .cell.active {
-      outline: 2px solid blue;
-    }
-  }
+.minehunt-cell {
+  width: 32px;
+  height: 32px;
 }

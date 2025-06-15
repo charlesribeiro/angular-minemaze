@@ -1,8 +1,10 @@
 <div
-  class="board"
-  [style.gridTemplateColumns]="'repeat(' + boardSize + ', 1fr)'"
+  class="board-grid"
+  [style.gridTemplateColumns]="'repeat(' + columns + ', 1fr)'"
 >
   @for (cell of board(); track cell.id) {
+
+  <!-- {{ cell.row }} {{ cell.col }} -->
   <app-cell
     [row]="cell.row"
     [col]="cell.col"

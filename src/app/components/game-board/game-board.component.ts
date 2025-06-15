@@ -9,8 +9,20 @@ import { mockBoard } from '../../data/board';
   styleUrl: './game-board.component.scss',
 })
 export class GameBoardComponent {
-  boardSize = 3;
-  board = signal(mockBoard);
+  rows = 3;
+  columns = 3;
+
+  board = signal(
+    Array.from({ length: this.rows * this.columns }).map((_, index) => ({
+      id: index,
+      row: Math.floor(index / this.columns),
+      col: index % this.columns,
+      isMine: false,
+      isRevealed: false,
+      isFlagged: false,
+      adjacentMines: 0,
+    }))
+  );
 
   activeCell = signal<{ row: number; col: number }>({ row: 0, col: 0 });
 
@@ -22,24 +34,26 @@ export class GameBoardComponent {
   @HostListener('window:keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
     const { row, col } = this.activeCell();
+
     switch (event.key) {
       case 'w':
       case 'ArrowUp':
         if (row > 0) this.activeCell.set({ row: row - 1, col });
         break;
+
       case 's':
       case 'ArrowDown':
-        if (row < this.boardSize - 1)
-          this.activeCell.set({ row: row + 1, col });
+        if (row < this.rows - 1) this.activeCell.set({ row: row + 1, col });
         break;
+
       case 'a':
       case 'ArrowLeft':
         if (col > 0) this.activeCell.set({ row, col: col - 1 });
         break;
+
       case 'd':
       case 'ArrowRight':
-        if (col < this.boardSize - 1)
-          this.activeCell.set({ row, col: col + 1 });
+        if (col < this.columns - 1) this.activeCell.set({ row, col: col + 1 });
         break;
     }
   }

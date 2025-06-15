@@ -34,6 +34,7 @@ export class CellComponent {
   }
 
   onKeyPress(event: Event): void {
+    debugger;
     event.preventDefault();
 
     const keyEvent = event as KeyboardEvent;
